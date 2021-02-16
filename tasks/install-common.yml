@@ -1,5 +1,10 @@
 - include: nodejs.yml
 
+- name: add group for genieacs
+  group:
+    name: "{{ group }}"
+    system: yes
+
 - name: add user for genieacs
   user:
     name: "{{ user }}"
