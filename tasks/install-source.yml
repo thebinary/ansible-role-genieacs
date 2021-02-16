@@ -4,15 +4,15 @@
 
 - name: clone genieacs git source
   git:
-    repo: "{{repo_url}}"
-    dest: "{{source_dir}}"
-    version: "{{repo_version}}"
+    repo: "{{ repo_url }}"
+    dest: "{{ source_dir }}"
+    version: "{{ repo_version }}"
     force: yes
   register: git_clone
 
 - name: check stat of genieacs-cwmp build binary
   stat:
-    path: "{{dist_install_dir}}/bin/genieacs-cwmp"
+    path: "{{ dist_install_dir }}/bin/genieacs-cwmp"
   register: genieacs_cwmp_binary
 
 - name: define if rebuild required
@@ -24,32 +24,32 @@
   block:
     - name: build source
       command: 
-        cmd: "{{item}}"
-        chdir: "{{source_dir}}"
+        cmd: "{{ item }}"
+        chdir: "{{ source_dir }}"
       loop:
-        - "{{npm_path}} install"
-        - "{{npm_path}} run build"
+        - "{{ npm_path }} install"
+        - "{{ npm_path }} run build"
 
     - name: copy build to install location
       copy:
-        src: "{{source_dir}}/dist/"
-        dest: "{{dist_install_dir}}"
-        owner: "{{user}}"
-        group: "{{group}}"
+        src: "{{ source_dir }}/dist/"
+        dest: "{{ dist_install_dir }}"
+        owner: "{{ user }}"
+        group: "{{ group }}"
         mode: '0755'
         remote_src: true
 
     - name: install dependencies at installed location
       command:
         cmd: npm install
-        chdir: "{{dist_install_dir}}"
+        chdir: "{{ dist_install_dir }}"
 
     - name: create binary symlinks
       file:
-        src: "{{dist_install_dir}}/bin/{{item}}"
-        dest: "{{source_bin_dir}}/{{item}}"
-        owner: "{{user}}"
-        group: "{{group}}"
+        src: "{{ dist_install_dir }}/bin/{{ item }}"
+        dest: "{{ source_bin_dir }}/{{ item }}"
+        owner: "{{ user }}"
+        group: "{{ group }}"
         state: link
       loop:
         - genieacs-cwmp

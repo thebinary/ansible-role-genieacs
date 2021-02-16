@@ -1,10 +1,10 @@
 - name: add systemd service unit files
   template:
     src: systemd-unit.j2
-    dest: "/etc/systemd/system/{{item.prog}}.service"
+    dest: "/etc/systemd/system/{{ item.prog }}.service"
   vars:
-    service: "{{item.name}}"
-    bin_path: "{{source_bin_dir}}/{{item.prog}}"
+    service: "{{ item.name }}"
+    bin_path: "{{ source_bin_dir }}/{{ item.prog }}"
   loop:
     - {name: "CWMP", prog: "genieacs-cwmp"}
     - {name: "EXT", prog: "genieacs-ext"}

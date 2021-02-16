@@ -12,6 +12,6 @@ defaults_genieacs_env:
   NODE_OPTIONS: --enable-source-maps
   GENIEACS_UI_JWT_SECRET: secret
 
-ext_dir: "{{install_dir}}/ext"
+ext_dir: "{{ install_dir }}/ext"
 source_dir: /usr/local/src/genieacs
 dist_install_dir: /usr/local/share/genieacs
