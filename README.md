@@ -44,11 +44,10 @@ Including an example of how to use your role (for instance, with variables passe
   - hosts: genie
     roles:
       - role: thebinary.genieacs
-        vars:
-          repo_version: xmpp
-          genieacs_env:
-            GENIEACS_XMPP_JID: genie@example.org
-            GENIEACS_XMPP_PASSWORD: xmpppassword
+        repo_version: xmpp
+        genieacs_env:
+          GENIEACS_XMPP_JID: genie@example.org
+          GENIEACS_XMPP_PASSWORD: xmpppassword
 ```
 
 License
