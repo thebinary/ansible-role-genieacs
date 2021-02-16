@@ -22,7 +22,7 @@ install:
   - printf '[defaults]\nroles_path=../' >ansible.cfg
  
   # Link to roles path
-  - ln -s $TRAVIS_REPO_SLUG ../genieacs
+  - ln -s $TRAVIS_REPO_SLUG ../thebinary.genieacs
 
 script:
   # Basic role syntax check
