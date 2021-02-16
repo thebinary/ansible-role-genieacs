@@ -1,0 +1,2 @@
+- include: install-common.yml
+- include: install-source.yml

@@ -1,0 +1,21 @@
+- include: nodejs.yml
+
+- name: add user for genieacs
+  user:
+    name: "{{ user }}"
+    home: "{{ install_dir }}"
+    group: "{{ group }}"
+    system: yes
+
+- name: make directories
+  file:
+    path: "{{ item }}"
+    owner: "{{ user }}"
+    group: "{{ group }}"
+    mode: '0755'
+    state: directory
+  loop:
+    - "{{ ext_dir }}"
+    - "{{ log_dir }}"
+
+- include: env.yml

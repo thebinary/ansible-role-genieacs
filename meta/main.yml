@@ -1,0 +1,15 @@
+galaxy_info:
+  author: theBinary
+  description: Ansible role to install and manage [GenieACS](https://genieacs.com)
+  company: theBinary
+  license: MIT
+  min_ansible_version: 2.1
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+  galaxy_tags:
+    - acs
+    - genieacs
+    - cwmp
+dependencies: []

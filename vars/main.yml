@@ -1,0 +1,8 @@
+user: genieacs
+group: genieacs
+repo_url: https://github.com/genieacs/genieacs
+repo_version: v1.2.3
+genieacs_env: {}
+install_dir: /opt/genieacs
+log_dir: /var/log/genieacs
+source_bin_dir: /usr/local/bin

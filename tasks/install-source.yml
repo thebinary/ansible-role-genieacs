@@ -1,0 +1,61 @@
+- name: install git
+  apt:
+    pkg: git
+
+- name: clone genieacs git source
+  git:
+    repo: "{{repo_url}}"
+    dest: "{{source_dir}}"
+    version: "{{repo_version}}"
+    force: yes
+  register: git_clone
+
+- name: check stat of genieacs-cwmp build binary
+  stat:
+    path: "{{dist_install_dir}}/bin/genieacs-cwmp"
+  register: genieacs_cwmp_binary
+
+- name: define if rebuild required
+  set_fact:
+    source_rebuild: "{{ git_clone.changed|bool or not genieacs_cwmp_binary.stat.exists or rebuild|bool }}"
+
+- name: build and install from source
+  when: source_rebuild
+  block:
+    - name: build source
+      command: 
+        cmd: "{{item}}"
+        chdir: "{{source_dir}}"
+      loop:
+        - "{{npm_path}} install"
+        - "{{npm_path}} run build"
+
+    - name: copy build to install location
+      copy:
+        src: "{{source_dir}}/dist/"
+        dest: "{{dist_install_dir}}"
+        owner: "{{user}}"
+        group: "{{group}}"
+        mode: '0755'
+        remote_src: true
+
+    - name: install dependencies at installed location
+      command:
+        cmd: npm install
+        chdir: "{{dist_install_dir}}"
+
+    - name: create binary symlinks
+      file:
+        src: "{{dist_install_dir}}/bin/{{item}}"
+        dest: "{{source_bin_dir}}/{{item}}"
+        owner: "{{user}}"
+        group: "{{group}}"
+        state: link
+      loop:
+        - genieacs-cwmp
+        - genieacs-ext
+        - genieacs-fs
+        - genieacs-nbi
+        - genieacs-ui
+
+    - include: services.yml
