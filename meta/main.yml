@@ -1,4 +1,5 @@
 galaxy_info:
+  role_name: genieacs
   author: theBinary
   description: Ansible role to install and manage [GenieACS](https://genieacs.com)
   company: theBinary
