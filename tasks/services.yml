@@ -12,3 +12,10 @@
     - {name: "NBI", prog: "genieacs-nbi"}
     - {name: "UI", prog: "genieacs-ui"}
   notify: systemd daemon reload
+
+- name: enable genieacs services
+  systemd:
+    name: "{{ item }}"
+    enabled: yes
+    state: started
+  loop: "{{ enabled_services }}"

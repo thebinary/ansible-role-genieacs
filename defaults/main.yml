@@ -15,3 +15,9 @@ defaults_genieacs_env:
 ext_dir: "{{ install_dir }}/ext"
 source_dir: /usr/local/src/genieacs
 dist_install_dir: /usr/local/share/genieacs
+enabled_services:
+  - genieacs-cwmp
+  - genieacs-ext
+  - genieacs-fs
+  - genieacs-nbi
+  - genieacs-ui

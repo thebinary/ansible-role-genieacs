@@ -24,15 +24,16 @@ __VARS__
 
 __DEFAULTS__
 
-| Variable              | Definition                                        | Defaults                                |
-|-----------------------|---------------------------------------------------|-----------------------------------------|
-| node_repo_version     | 12.x                                              | NodeJS version to install for genieacs  |
-| npm_path              |                                                   | /usr/bin/npm                            |
-| rebuild               | force rebuilding and reinstall of genieacs source | false                                   |
-| defaults_genieacs_env | defaults/required env vars for genieacs service   | _dict of env vars_                      |
-| ext_dir               | path for genieacs ext scripts                     | {{ install_dir/ext }}                   |
-| source_dir            | path to clone genieacs repo into                  | /usr/local/src/genieacs                 |
-| dist_install_dir      | path to install source build of genieacs          | /usr/local/share/genieacs               |
+| Variable              | Definition                                        | Defaults                                                                            |
+|-----------------------|---------------------------------------------------|-------------------------------------------------------------------------------------|
+| node_repo_version     | 12.x                                              | NodeJS version to install for genieacs                                              |
+| npm_path              |                                                   | /usr/bin/npm                                                                        |
+| rebuild               | force rebuilding and reinstall of genieacs source | false                                                                               |
+| defaults_genieacs_env | defaults/required env vars for genieacs service   | _dict of env vars_                                                                  |
+| ext_dir               | path for genieacs ext scripts                     | {{ install_dir/ext }}                                                               |
+| source_dir            | path to clone genieacs repo into                  | /usr/local/src/genieacs                                                             |
+| dist_install_dir      | path to install source build of genieacs          | /usr/local/share/genieacs                                                           |
+| enabled_services      | genieacs services to enable                       | [genieacs-cwmp, genieacs-ext, genieacs-fs, genieacs-nbi, genieacs-ui]               |
 
 
 Example Playbook
